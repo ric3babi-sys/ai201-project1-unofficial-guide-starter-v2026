@@ -69,10 +69,11 @@ in at least 4 of 5 tries.
        - "No chunk is shorter than 200 characters, since anything below that
           in my corpus turned out to be a heading with no content under it." -->
 
+Chunks are expected to provide details that explain and support the answer in at least 4 of 5 tries.
 
 
 **Why this target:**
-
+<!-- Is there enough information and details to give supporting response? -->
 
 
 ---
@@ -87,10 +88,11 @@ in at least 4 of 5 tries.
      present — anything, as long as it names a number or an observable
      outcome. -->
 
+Compare public transportation with private ride-sharing like Uber and Lyft 
 
 
 **Why this target:**
-
+<!-- How accessible are site seeing? Which is more feasable? -->
 
 
 ---
