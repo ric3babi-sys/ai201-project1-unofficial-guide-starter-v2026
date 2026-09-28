@@ -131,8 +131,36 @@ without reading what came before or after?
 **Question:**
 Is public transporation available in the city?
 
-**Answer:**
+**Answer1:**
 (.venv) codepath@Ubuntu-dev:~/Documents/codepath/AI201/week1-2/ai201-project1-unofficial-guide-starter-v2026$ python app.py retrieve "Is public transporation available in the city?" --top-k 8
+
+Question: Is public transporation available in the city?
+
+#   distance   source                           preview
+----------------------------------------------------------------------------------------------------
+1   0.8968     guide_thornby_wells.md           ## Where to stay Two large hotels from the spa perio...
+2   0.9034     guide_accessibility.md           ## Difficult **Kestrelford** is built on a slope and...
+3   0.9125     guide_marchwood.md               ## Getting there Every railway line in the region me...
+4   0.9188     guide_givens_mill.md             ## Getting there No station and no bus on Sundays; f...
+5   0.9250     guide_pellew_sands.md            ## When to go June and September for the beach witho...
+6   0.9254     guide_givens_mill.md             ## When to go The mill runs March to November and is...
+7   0.9281     guide_regional_transport.md      ## Driving Roads are good between the towns and poor...
+8   0.9300     guide_marchwood.md               ## What to see The city museum is free and genuinely...
+
+Gate: best distance 0.897 is over the 0.6 cutoff — refusing
+
+Lower is better. 0.3 is a close match, 0.9 is unrelated.
+Milestone 4: run your five questions, then the five in OUT_OF_SCOPE
+that your documents clearly don't cover, and look for the gap
+between the two groups. Your cutoff goes in that gap.
+
+**Answer2:**
+(.venv) codepath@Ubuntu-dev:~/Documents/codepath/AI201/week1-2/ai201-project1-unofficial-guide-starter-v2026$ python app.py ask "Is public transporation available in the city?" --show-prompt
+  (best distance 0.897, cutoff 0.6)
+
+I don't have enough information about that.
+
+0 model calls this session
 
 Question: Is public transporation available in the city?
 
@@ -166,7 +194,7 @@ between the two groups. Your cutoff goes in that gap.
      here — the table below wants all ten rows.
 
      Milestone 4. -->
-My questions all failed. Not even close.
+My questions all failed. Not even close. It's funny the lowest distance was actually from the OUT_OF_SCOPE questions. "What is the capital of Mongolia?" scored 0.8581.
 
 
 | Question                                                    | In corpus? | Best distance |
