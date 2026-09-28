@@ -29,8 +29,8 @@
 
 ## Chunking Strategy
 
-**Chunk size:**
-**Overlap:**
+**Chunk size: 550**
+**Overlap: 180**
 
 <!-- What about YOUR documents made you pick these numbers? Short posts and
      long sectioned guides don't want the same chunking, and "800 seemed
@@ -52,6 +52,49 @@
      across.
 
      Milestone 3. -->
+======================================================================
+Chunk 1  |  source: guide_accessibility.md#0  |  produced by: chunker.py::split_documents
+======================================================================
+## Getting around the region with limited mobility
+An honest assessment rather than a promotional one. Some of these places are
+difficult and it is better to know in advance.
+
+======================================================================
+Chunk 2  |  source: guide_corry_vale.md#4  |  produced by: chunker.py::split_documents
+======================================================================
+## Where to stay
+Perhaps thirty beds in the entire valley, spread across two pubs and a handful of farmhouse rooms. In summer these are booked months ahead. Camping is permitted on two marked fields and nowhere else.
+
+======================================================================
+Chunk 3  |  source: guide_givens_mill.md#1  |  produced by: chunker.py::split_documents
+======================================================================
+## Getting there
+No station and no bus on Sundays; four buses a day from Brightwater on weekdays, taking 30 minutes. Driving is 20minutes. The village car park holds about forty cars and is full by 11am on summer Saturdays.
+
+## Getting around
+Everything is on one street along the river. The mill is at one end and the church at the other, eight minutes apart. The riverside path continues in both directi
+
+======================================================================
+Chunk 4  |  source: guide_kestrelford.md#5  |  produced by: chunker.py::split_documents
+======================================================================
+## When to go
+Late spring and early autumn. The Saturday market runs year-round but is much reduced from November to February. August is busy with walkers. The single-track approach road is genuinely difficult in snow and the town can be cutoff for a day or two most winters.
+
+======================================================================
+Chunk 5  |  source: guide_regional_transport.md#2  |  produced by: chunker.py::split_documents
+======================================================================
+## Buses
+Three operators run in the region and they do not accept each other's tickets,
+which is the single most common source of confusion for visitors. Services
+concentrate on weekday daytimes. Sunday service is minimal to non-existent
+outside the Brightwater town routes.
+
+The Kestrelford service is hourly on weekdays, two-hourly on Saturdays, and
+does not run on Sundays. The Halden Bay coast service runs four times daily
+year-round.
+
+For each one, ask: could someone answer a question using only this,
+without reading what came before or after?
 
 **Chunk 1** — source: `` — produced by: ``
 
