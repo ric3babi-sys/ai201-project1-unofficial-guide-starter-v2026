@@ -41,6 +41,8 @@
      more than pretending you got it right first time.
 
      Milestone 3. -->
+I choose 550 for CHUNK_SIZE to balance large vs medium sizes.
+For CHUNK_OVERLAP, I estimate overlapping relavent info is about a sentence long.
 
 ## Sample Chunks
 
@@ -96,27 +98,27 @@ year-round.
 For each one, ask: could someone answer a question using only this,
 without reading what came before or after?
 
-**Chunk 1** — source: `` — produced by: ``
+**Chunk 1** — source: guide_accessibility.md Post #0 `` — produced by: chunker.py::split_documents``
 
 ```
 ```
 
-**Chunk 2** — source: `` — produced by: ``
+**Chunk 2** — source: guide_corry_vale.md Post #4 `` — produced by: chunker.py::split_documents``
 
 ```
 ```
 
-**Chunk 3** — source: `` — produced by: ``
+**Chunk 3** — source: guide_givens_mill.md Post #1 `` — produced by: chunker.py::split_documents``
 
 ```
 ```
 
-**Chunk 4** — source: `` — produced by: ``
+**Chunk 4** — source: guide_kestrelford.md Post #5 `` — produced by: chunker.py::split_documents``
 
 ```
 ```
 
-**Chunk 5** — source: `` — produced by: ``
+**Chunk 5** — source: guide_regional_transport.md Post #2 `` — produced by: chunker.py::split_documents``
 
 ```
 ```
@@ -127,9 +129,30 @@ without reading what came before or after?
      visible. Milestone 4. -->
 
 **Question:**
+Is public transporation available in the city?
 
 **Answer:**
+(.venv) codepath@Ubuntu-dev:~/Documents/codepath/AI201/week1-2/ai201-project1-unofficial-guide-starter-v2026$ python app.py retrieve "Is public transporation available in the city?" --top-k 8
 
+Question: Is public transporation available in the city?
+
+#   distance   source                           preview
+----------------------------------------------------------------------------------------------------
+1   0.8968     guide_thornby_wells.md           ## Where to stay Two large hotels from the spa perio...
+2   0.9034     guide_accessibility.md           ## Difficult **Kestrelford** is built on a slope and...
+3   0.9125     guide_marchwood.md               ## Getting there Every railway line in the region me...
+4   0.9188     guide_givens_mill.md             ## Getting there No station and no bus on Sundays; f...
+5   0.9250     guide_pellew_sands.md            ## When to go June and September for the beach witho...
+6   0.9254     guide_givens_mill.md             ## When to go The mill runs March to November and is...
+7   0.9281     guide_regional_transport.md      ## Driving Roads are good between the towns and poor...
+8   0.9300     guide_marchwood.md               ## What to see The city museum is free and genuinely...
+
+Gate: best distance 0.897 is over the 0.6 cutoff — refusing
+
+Lower is better. 0.3 is a close match, 0.9 is unrelated.
+Milestone 4: run your five questions, then the five in OUT_OF_SCOPE
+that your documents clearly don't cover, and look for the gap
+between the two groups. Your cutoff goes in that gap.
 ```
 ```
 
@@ -143,10 +166,21 @@ without reading what came before or after?
      here — the table below wants all ten rows.
 
      Milestone 4. -->
+My questions all failed. Not even close.
 
-| Question | In corpus? | Best distance |
-|---|---|---|
-|  |  |  |
+
+| Question                                                    | In corpus? | Best distance |
+|-------------------------------------------------------------|------------|---------------|
+| What is the waiting time at Commons during lunch?           | NO         | 0.9126        |
+| Where is the cheapest place to buy groceries in town?       | NO         | 0.9489        |
+| What season has the best weather in the city?               | NO         | 0.9289        |
+| Where is the most scenic spot in the city?                  | NO         | 0.9101        |
+| where is the best hiking trail in the city?                 | NO         | 0.9020        |
+| What is the capital of Mongolia?                            | NO         | 0.8581        |
+| How do I change the oil in a diesel engine?                 | NO         | 0.9992        |
+| Who won the 1994 World Cup?                                 | NO         | 0.8604        |
+| What is the recommended dosage of ibuprofen for a headache? | NO         | 0.9776        |
+| How do I write a for loop in Rust?                          | NO         | 0.9055        |
 
 ## How I Used AI
 
@@ -160,8 +194,10 @@ without reading what came before or after?
      Milestone 5. -->
 
 **1.**
+I asked AI to implement split_documents and take into account relevant details in next post. It missed the case when current post is the last. This was found in a unit test and corrected.
 
 **2.**
+Had to tweak CHUNK_OVERLAP to get a reasonable size for a single complete sentence.
 
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never
