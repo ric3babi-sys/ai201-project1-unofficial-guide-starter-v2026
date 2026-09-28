@@ -26,6 +26,7 @@
      this repo.
 
      Milestone 5. -->
+I chose the city_guides corpus. Information provided for accessibility, dining, select cities, transportation, and hiking. Some info is given about the seasons, describing temps, atmosphere and places.
 
 ## Chunking Strategy
 
@@ -194,7 +195,7 @@ between the two groups. Your cutoff goes in that gap.
      here — the table below wants all ten rows.
 
      Milestone 4. -->
-My questions all failed. Not even close. It's funny the lowest distance was actually from the OUT_OF_SCOPE questions. "What is the capital of Mongolia?" scored 0.8581.
+I left the TOP_K and THRESHOLD unchanged in config.py. After experimenting with different values, my distances got worst. My questions all failed. Not even close. It's funny the lowest distance was actually from the OUT_OF_SCOPE questions. "What is the capital of Mongolia?" scored 0.8581.
 
 
 | Question                                                    | In corpus? | Best distance |
