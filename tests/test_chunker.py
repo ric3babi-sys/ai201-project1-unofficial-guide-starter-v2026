@@ -1,19 +1,19 @@
 import unittest
 
-import config
 from chunker import split_documents
 from ingest import Document
 
 
 class SplitDocumentsTests(unittest.TestCase):
-    def setUp(self):
-        config.CHUNK_SIZE = 120
-        config.CHUNK_OVERLAP = 30
+    CHUNK_SIZE = 120
+    CHUNK_OVERLAP = 30
 
     def test_split_documents_keeps_whole_short_post(self):
         doc = Document("short_post.txt", "A short post with no need to split.")
 
-        chunks = split_documents([doc])
+        chunks = split_documents(
+            [doc], chunk_size=self.CHUNK_SIZE, overlap=self.CHUNK_OVERLAP
+        )
 
         self.assertEqual(len(chunks), 1)
         self.assertEqual(chunks[0].text, doc.text)
@@ -23,7 +23,11 @@ class SplitDocumentsTests(unittest.TestCase):
     def test_split_documents_creates_partial_chunks_for_long_posts(self):
         text = ("This is a longer post. " * 30)
 
-        chunks = split_documents([Document("long_post.txt", text)])
+        chunks = split_documents(
+            [Document("long_post.txt", text)],
+            chunk_size=self.CHUNK_SIZE,
+            overlap=self.CHUNK_OVERLAP,
+        )
 
         self.assertGreater(len(chunks), 1)
         self.assertTrue(all(chunk.text.strip() for chunk in chunks))
@@ -39,7 +43,11 @@ class SplitDocumentsTests(unittest.TestCase):
             "The market is lively and the riverside strip is affordable.\n"
         )
 
-        chunks = split_documents([Document("related_sections.txt", text)])
+        chunks = split_documents(
+            [Document("related_sections.txt", text)],
+            chunk_size=self.CHUNK_SIZE,
+            overlap=self.CHUNK_OVERLAP,
+        )
 
         merged_text = "\n".join(chunk.text for chunk in chunks)
         self.assertIn("Getting there", merged_text)
@@ -50,7 +58,7 @@ class SplitDocumentsTests(unittest.TestCase):
         chunks = split_documents([
             Document("empty.txt", ""),
             Document("real.txt", "A real post that should survive chunking."),
-        ])
+        ], chunk_size=self.CHUNK_SIZE, overlap=self.CHUNK_OVERLAP)
 
         self.assertTrue(all(chunk.text.strip() for chunk in chunks))
         self.assertTrue(all(chunk.produced_by == "chunker.py::split_documents" for chunk in chunks))
@@ -59,7 +67,11 @@ class SplitDocumentsTests(unittest.TestCase):
     def test_split_documents_rejects_incorrect_chunks(self):
         text = ("This is a longer post. " * 30)
 
-        chunks = split_documents([Document("incorrect_chunk.txt", text)])
+        chunks = split_documents(
+            [Document("incorrect_chunk.txt", text)],
+            chunk_size=self.CHUNK_SIZE,
+            overlap=self.CHUNK_OVERLAP,
+        )
 
         self.assertTrue(all(chunk.text.strip() for chunk in chunks))
         self.assertTrue(all(chunk.source for chunk in chunks))

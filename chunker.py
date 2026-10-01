@@ -151,7 +151,11 @@ def _split_sections(text: str) -> list[tuple[str, str]]:
     return [section for section in sections if section[0] or section[1]]
 
 
-def split_documents(documents: list[Document]) -> list[Chunk]:
+def split_documents(
+    documents: list[Document],
+    chunk_size: int | None = None,
+    overlap: int | None = None,
+) -> list[Chunk]:
     """
     Split documents into chunks without losing the structure of short posts or
     long sectioned guides.
@@ -168,13 +172,15 @@ def split_documents(documents: list[Document]) -> list[Chunk]:
     Keep the `produced_by` string set to "chunker.py::split_documents" so the
     README and outputs accurately name the generator.
     """
+    chunk_size = config.CHUNK_SIZE if chunk_size is None else chunk_size
+    overlap = config.CHUNK_OVERLAP if overlap is None else overlap
     chunks: list[Chunk] = []
 
     for doc in documents:
         if not doc.text or not doc.text.strip():
             continue
 
-        if len(doc.text) <= config.CHUNK_SIZE:
+        if len(doc.text) <= chunk_size:
             chunks.append(
                 Chunk(
                     text=doc.text.strip(),
@@ -197,9 +203,9 @@ def split_documents(documents: list[Document]) -> list[Chunk]:
                 next_title, next_body = sections[index + 1]
                 next_text = (f"## {next_title}\n{next_body}" if next_title else next_body).strip()
                 if _titles_are_related(title.lower(), next_title.lower()):
-                    overlap = next_text[: config.CHUNK_OVERLAP].strip()
-                    if overlap:
-                        merged_sections.append((text + "\n\n" + overlap).strip())
+                    shared_text = next_text[:overlap].strip()
+                    if shared_text:
+                        merged_sections.append((text + "\n\n" + shared_text).strip())
                         index += 2
                         continue
 
@@ -208,7 +214,7 @@ def split_documents(documents: list[Document]) -> list[Chunk]:
 
         doc_index = 0
         for section_text in merged_sections:
-            if len(section_text) <= config.CHUNK_SIZE:
+            if len(section_text) <= chunk_size:
                 chunks.append(
                     Chunk(
                         text=section_text.strip(),
@@ -222,8 +228,8 @@ def split_documents(documents: list[Document]) -> list[Chunk]:
 
             for chunk in fallback_split(
                 [Document(doc.source, section_text)],
-                chunk_size=config.CHUNK_SIZE,
-                overlap=config.CHUNK_OVERLAP,
+                chunk_size=chunk_size,
+                overlap=overlap,
             ):
                 chunks.append(
                     Chunk(

@@ -20,6 +20,7 @@ rest of the project if they were wrong:
 import os
 import shutil
 from dataclasses import dataclass
+from importlib import import_module
 
 # Must be set BEFORE chromadb is imported. Without it, some Chroma versions
 # print "Failed to send telemetry event ..." on every single call — which looks
@@ -79,7 +80,9 @@ def _sentence_transformer(name: str):
     default install has — which is the whole point of the default install.
     """
     try:
-        from sentence_transformers import SentenceTransformer
+        SentenceTransformer = getattr(
+            import_module("sentence_transformers"), "SentenceTransformer"
+        )
     except ImportError as exc:
         raise RuntimeError(
             f"config.EMBEDDING_MODEL is set to {name!r}, which isn't the model "

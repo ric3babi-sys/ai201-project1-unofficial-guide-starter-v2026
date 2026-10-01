@@ -139,51 +139,29 @@ Question: Is public transporation available in the city?
 
 #   distance   source                           preview
 ----------------------------------------------------------------------------------------------------
-1   0.8968     guide_thornby_wells.md           ## Where to stay Two large hotels from the spa perio...
-2   0.9034     guide_accessibility.md           ## Difficult **Kestrelford** is built on a slope and...
-3   0.9125     guide_marchwood.md               ## Getting there Every railway line in the region me...
-4   0.9188     guide_givens_mill.md             ## Getting there No station and no bus on Sundays; f...
-5   0.9250     guide_pellew_sands.md            ## When to go June and September for the beach witho...
-6   0.9254     guide_givens_mill.md             ## When to go The mill runs March to November and is...
-7   0.9281     guide_regional_transport.md      ## Driving Roads are good between the towns and poor...
-8   0.9300     guide_marchwood.md               ## What to see The city museum is free and genuinely...
+1   0.6433     guide_accessibility.md           minutes on weekdays. The city museum and covered mar...
+2   0.6690     guide_elder_ness.md              ## Getting there A single road in, which floods at t...
+3   0.6811     guide_marchwood.md               ## What to see The city museum is free and genuinely...
+4   0.7042     guide_accessibility.md           ## Getting around the region with limited mobility A...
+5   0.7097     guide_accessibility.md           ## Straightforward **Thornby Wells** is the easiest ...
+6   0.7164     guide_elder_ness.md              ## Where to stay The pub has four rooms and the obse...
+7   0.7220     guide_givens_mill.md             ## Getting there No station and no bus on Sundays; f...
+8   0.7302     guide_marchwood.md               ## Getting there Every railway line in the region me...
 
-Gate: best distance 0.897 is over the 0.6 cutoff — refusing
+Gate: best distance 0.643 is over the 0.6 cutoff — refusing
 
 Lower is better. 0.3 is a close match, 0.9 is unrelated.
 Milestone 4: run your five questions, then the five in OUT_OF_SCOPE
 that your documents clearly don't cover, and look for the gap
 between the two groups. Your cutoff goes in that gap.
 
+
 **Answer2:**
-(.venv) codepath@Ubuntu-dev:~/Documents/codepath/AI201/week1-2/ai201-project1-unofficial-guide-starter-v2026$ python app.py ask "Is public transporation available in the city?" --show-prompt
-  (best distance 0.897, cutoff 0.6)
+  (best distance 0.643, cutoff 0.6)
 
 I don't have enough information about that.
 
 0 model calls this session
-
-Question: Is public transporation available in the city?
-
-#   distance   source                           preview
-----------------------------------------------------------------------------------------------------
-1   0.8968     guide_thornby_wells.md           ## Where to stay Two large hotels from the spa perio...
-2   0.9034     guide_accessibility.md           ## Difficult **Kestrelford** is built on a slope and...
-3   0.9125     guide_marchwood.md               ## Getting there Every railway line in the region me...
-4   0.9188     guide_givens_mill.md             ## Getting there No station and no bus on Sundays; f...
-5   0.9250     guide_pellew_sands.md            ## When to go June and September for the beach witho...
-6   0.9254     guide_givens_mill.md             ## When to go The mill runs March to November and is...
-7   0.9281     guide_regional_transport.md      ## Driving Roads are good between the towns and poor...
-8   0.9300     guide_marchwood.md               ## What to see The city museum is free and genuinely...
-
-Gate: best distance 0.897 is over the 0.6 cutoff — refusing
-
-Lower is better. 0.3 is a close match, 0.9 is unrelated.
-Milestone 4: run your five questions, then the five in OUT_OF_SCOPE
-that your documents clearly don't cover, and look for the gap
-between the two groups. Your cutoff goes in that gap.
-```
-```
 
 **My relevance cutoff:**
 
@@ -195,21 +173,23 @@ between the two groups. Your cutoff goes in that gap.
      here — the table below wants all ten rows.
 
      Milestone 4. -->
-I left the TOP_K and THRESHOLD unchanged in config.py. After experimenting with different values, my distances got worst. My questions all failed. Not even close. It's funny the lowest distance was actually from the OUT_OF_SCOPE questions. "What is the capital of Mongolia?" scored 0.8581.
+<!--I left the TOP_K and THRESHOLD unchanged in config.py. After experimenting with different values, my distances got worst. My questions all failed. Not even close. It's funny the lowest distance was actually from the OUT_OF_SCOPE questions. "What is the capital of Mongolia?" scored 0.8581. -->
+**UPDATED**
+Best distances inproved for my questions. All are below cutoff threshold. Ran out of time.
 
 
 | Question                                                    | In corpus? | Best distance |
 |-------------------------------------------------------------|------------|---------------|
-| What is the waiting time at Commons during lunch?           | NO         | 0.9126        |
-| Where is the cheapest place to buy groceries in town?       | NO         | 0.9489        |
-| What season has the best weather in the city?               | NO         | 0.9289        |
-| Where is the most scenic spot in the city?                  | NO         | 0.9101        |
-| where is the best hiking trail in the city?                 | NO         | 0.9020        |
-| What is the capital of Mongolia?                            | NO         | 0.8581        |
-| How do I change the oil in a diesel engine?                 | NO         | 0.9992        |
-| Who won the 1994 World Cup?                                 | NO         | 0.8604        |
-| What is the recommended dosage of ibuprofen for a headache? | NO         | 0.9776        |
-| How do I write a for loop in Rust?                          | NO         | 0.9055        |
+| What is the waiting time at Commons during lunch?           | YES        | 0.5579        |
+| Where is the cheapest place to buy groceries in town?       | YES        | 0.5794        |
+| What season has the best weather in the city?               | YES        | 0.5473        |
+| Where is the most scenic spot in the city?                  | YES        | 0.5493        |
+| where is the best hiking trail in the city?                 | YES        | 0.5139        |
+| What is the capital of Mongolia?                            | NO         | 0.7908        |
+| How do I change the oil in a diesel engine?                 | NO         | 0.9104        |
+| Who won the 1994 World Cup?                                 | NO         | 0.9324        |
+| What is the recommended dosage of ibuprofen for a headache? | NO         | 0.8459        |
+| How do I write a for loop in Rust?                          | NO         | 0.8130        |
 
 ## How I Used AI
 
